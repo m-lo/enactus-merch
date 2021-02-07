@@ -63,7 +63,14 @@ function App() {
       >
         {prize}
       </div>
-      <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          marginTop: 40,
+          display: 'flex',
+          flexDirection: 'column',
+          paddingBottom: 40,
+        }}
+      >
         <Button label="Facebook" link="https://www.facebook.com/enactusunsw/" />
         <Button label="Instagram" link="https://instagram.com/enactus.unsw/" />
         <Button
