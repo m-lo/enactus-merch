@@ -54,7 +54,7 @@ function App() {
         <img
           src={Logo}
           alt="Enactus UNSW"
-          style={{ width: 240, paddingBottom: 40 }}
+          style={{ width: 240, paddingBottom: 40, paddingTop: 40 }}
         />
       </div>
       <div style={{ fontFamily: 'Montserrat' }}>YOU HAVE WON</div>
