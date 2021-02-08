@@ -69,6 +69,7 @@ function App() {
           minHeight: 240,
           display: "flex",
           alignItems: "center",
+          textAlign: "center",
         }}
       >
         {prize}
