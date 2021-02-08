@@ -1,5 +1,6 @@
-import Logo from "./Logo.png";
 import { useEffect, useState } from "react";
+import Logo from "./Logo.png";
+import Confetti from "react-dom-confetti";
 
 const Button = ({ label, link, style }) => {
   return (
@@ -12,6 +13,7 @@ const Button = ({ label, link, style }) => {
         margin: 8,
         borderRadius: 16,
         border: "4px solid black",
+        fontSize: 12,
         // background: "black",
         color: "black",
         fontFamily: "Montserrat",
@@ -28,16 +30,20 @@ const Button = ({ label, link, style }) => {
 
 function App() {
   const [prize, setPrize] = useState();
+  const [complete, setComplete] = useState(false);
   useEffect(() => {
     const merch = ["Pens", "Hand San", "Sticky Notes"];
-    let looper = setInterval(
-      () => setPrize(merch[Math.floor(Math.random() * merch.length)]),
-      30
-    );
+    let looper = setInterval(() => {
+      setPrize(merch[Math.floor(Math.random() * merch.length)]);
+    }, 30);
     setTimeout(function () {
+      setComplete(true);
       clearInterval(looper);
     }, 3000);
   }, []);
+  useEffect(() => {
+    if (complete) setComplete(false);
+  }, [complete]);
   return (
     <div
       style={{
@@ -59,12 +65,14 @@ function App() {
           style={{ width: 240, paddingBottom: 40, paddingTop: 40 }}
         />
       </div>
+
       <div style={{ fontFamily: "Montserrat" }}>YOU HAVE WON</div>
+
       <div
         style={{
           alignSelf: "center",
           fontFamily: "Montserrat",
-          fontSize: 64,
+          fontSize: 40,
           minHeight: 240,
           display: "flex",
           alignItems: "center",
@@ -73,6 +81,7 @@ function App() {
       >
         {prize}!
       </div>
+
       <div
         style={{
           marginTop: 40,
@@ -87,7 +96,7 @@ function App() {
             link="https://enactus.page.link/giveaway/"
             style={{
               padding: 40,
-              fontSize: 24,
+              fontSize: 16,
               background: "black",
               color: "#FFC222",
             }}
@@ -97,7 +106,7 @@ function App() {
             link="https://www.facebook.com/events/136839811613301"
             style={{
               padding: 40,
-              fontSize: 24,
+              fontSize: 16,
               background: "black",
               color: "#FFC222",
             }}
@@ -113,6 +122,15 @@ function App() {
         <Button label="Newsletter" link="http://eepurl.com/gi4Ud9" />
         <Button label="Website" link="https://enactusunsw.org/" />
       </div>
+      <Confetti
+        active={complete}
+        config={{
+          spread: 60,
+          startVelocity: 120,
+          elementCount: 320,
+          stagger: 0.4,
+        }}
+      />
     </div>
   );
 }
