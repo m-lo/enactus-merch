@@ -62,7 +62,14 @@ function App() {
       </div>
       <div style={{ fontFamily: "Montserrat" }}>YOU HAVE WON</div>
       <div
-        style={{ alignSelf: "center", fontFamily: "Montserrat", fontSize: 64 }}
+        style={{
+          alignSelf: "center",
+          fontFamily: "Montserrat",
+          fontSize: 64,
+          minHeight: 240,
+          display: "flex",
+          alignItems: "center",
+        }}
       >
         {prize}
       </div>
