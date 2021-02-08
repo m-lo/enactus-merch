@@ -17,7 +17,6 @@ const Button = ({ label, link, style }) => {
         fontFamily: "Montserrat",
         textDecoration: "none",
         textTransform: "uppercase",
-        transition: "all 0.2s ease",
         ...style,
       }}
       href={link}
@@ -72,7 +71,7 @@ function App() {
           textAlign: "center",
         }}
       >
-        {prize}
+        {prize}!
       </div>
       <div
         style={{
@@ -82,16 +81,29 @@ function App() {
           paddingBottom: 40,
         }}
       >
-        <Button
-          label="ENTER OUR GIVEAWAY"
-          link="https://enactus.page.link/giveaway/"
-          style={{
-            padding: 40,
-            fontSize: 32,
-            background: "black",
-            color: "#FFC222",
-          }}
-        />
+        <div style={{ display: "flex" }}>
+          <Button
+            label="ENTER OUR GIVEAWAY"
+            link="https://enactus.page.link/giveaway/"
+            style={{
+              padding: 40,
+              fontSize: 24,
+              background: "black",
+              color: "#FFC222",
+            }}
+          />
+          <Button
+            label="APPLY FOR T1 RECRUITMENT"
+            link="https://www.facebook.com/events/136839811613301"
+            style={{
+              padding: 40,
+              fontSize: 24,
+              background: "black",
+              color: "#FFC222",
+            }}
+          />
+        </div>
+
         <Button label="Facebook" link="https://www.facebook.com/enactusunsw/" />
         <Button label="Instagram" link="https://instagram.com/enactus.unsw/" />
         <Button
