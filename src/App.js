@@ -90,28 +90,26 @@ function App() {
           paddingBottom: 40,
         }}
       >
-        <div style={{ display: "flex" }}>
-          <Button
-            label="ENTER OUR GIVEAWAY"
-            link="https://enactus.page.link/giveaway/"
-            style={{
-              padding: 40,
-              fontSize: 16,
-              background: "black",
-              color: "#FFC222",
-            }}
-          />
-          <Button
-            label="APPLY FOR T1 RECRUITMENT"
-            link="https://www.facebook.com/events/136839811613301"
-            style={{
-              padding: 40,
-              fontSize: 16,
-              background: "black",
-              color: "#FFC222",
-            }}
-          />
-        </div>
+        <Button
+          label="ENTER OUR GIVEAWAY"
+          link="https://enactus.page.link/giveaway/"
+          style={{
+            padding: 40,
+            fontSize: 16,
+            background: "black",
+            color: "#FFC222",
+          }}
+        />
+        <Button
+          label="APPLY FOR T1 RECRUITMENT"
+          link="https://www.facebook.com/events/136839811613301"
+          style={{
+            padding: 40,
+            fontSize: 16,
+            background: "black",
+            color: "#FFC222",
+          }}
+        />
 
         <Button label="Facebook" link="https://www.facebook.com/enactusunsw/" />
         <Button label="Instagram" link="https://instagram.com/enactus.unsw/" />
