@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo.png";
 import Confetti from "react-dom-confetti";
+import draw from "./draw";
 
-const Button = ({ label, link, style }) => {
+const Button = ({ label, link, style, ...rest }) => {
   return (
-    <a
+    <button
       target="_blank"
       rel="noreferrer"
       style={{
@@ -14,33 +15,39 @@ const Button = ({ label, link, style }) => {
         borderRadius: 16,
         border: "4px solid black",
         fontSize: 12,
-        // background: "black",
-        color: "black",
+        background: "black",
+        color: "#ffc222",
         fontFamily: "Montserrat",
         textDecoration: "none",
         textTransform: "uppercase",
+        cursor: "pointer",
+        outline: "none",
+        boxShadow: "none",
         ...style,
       }}
-      href={link}
+      {...rest}
+      // href={link}
     >
       {label}
-    </a>
+    </button>
   );
 };
 
 function App() {
   const [prize, setPrize] = useState();
   const [complete, setComplete] = useState(false);
-  useEffect(() => {
-    const merch = ["Pens", "Hand San", "Sticky Notes"];
+  const [hover, setHover] = useState(false);
+
+  function picker() {
     let looper = setInterval(() => {
-      setPrize(merch[Math.floor(Math.random() * merch.length)]);
-    }, 30);
+      setPrize(draw[Math.floor(Math.random() * draw.length)]);
+    }, 25);
     setTimeout(function () {
       setComplete(true);
       clearInterval(looper);
-    }, 3000);
-  }, []);
+    }, 5000);
+  }
+
   useEffect(() => {
     if (complete) setComplete(false);
   }, [complete]);
@@ -58,68 +65,55 @@ function App() {
         justifyContent: "center",
       }}
     >
-      <div style={{ alignSelf: "center" }}>
+      {/* <div style={{ alignSelf: "center", marginTop: 40 }}>
         <img
           src={Logo}
           alt="Enactus UNSW"
-          style={{ width: 240, paddingBottom: 40, paddingTop: 40 }}
+          style={{ width: 200, paddingBottom: 40, paddingTop: 40 }}
         />
-      </div>
+      </div> */}
 
-      <div style={{ fontFamily: "Montserrat" }}>YOU HAVE WON</div>
+      <div
+        style={{
+          fontFamily: "Montserrat",
+          marginTop: 600,
+          textAlign: "center",
+        }}
+      >
+        THE WINNER IS
+        <br />
+        {!prize && ". . ."}
+      </div>
+      {!prize && (
+        <Button
+          label="Pick Winner"
+          onClick={picker}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          style={{
+            transition:
+              "color 0.2s ease, background 0.2s ease, border-radius 0.8s ease",
+            background: hover ? "black" : "none",
+            color: hover ? "#FFC222" : "black",
+            borderRadius: hover ? 200 : 0,
+          }}
+        />
+      )}
 
       <div
         style={{
           alignSelf: "center",
           fontFamily: "Montserrat",
-          fontSize: 40,
-          minHeight: 240,
+          fontSize: 24,
+          minHeight: 80,
           display: "flex",
           alignItems: "center",
           textAlign: "center",
         }}
       >
-        {prize}!
+        {prize}
       </div>
-
-      <div
-        style={{
-          marginTop: 40,
-          display: "flex",
-          flexDirection: "column",
-          paddingBottom: 40,
-        }}
-      >
-        <Button
-          label="ENTER OUR GIVEAWAY"
-          link="https://enactus.page.link/giveaway/"
-          style={{
-            padding: 40,
-            fontSize: 16,
-            background: "black",
-            color: "#FFC222",
-          }}
-        />
-        <Button
-          label="APPLY FOR T1 RECRUITMENT"
-          link="https://www.facebook.com/events/136839811613301"
-          style={{
-            padding: 40,
-            fontSize: 16,
-            background: "black",
-            color: "#FFC222",
-          }}
-        />
-
-        <Button label="Facebook" link="https://www.facebook.com/enactusunsw/" />
-        <Button label="Instagram" link="https://instagram.com/enactus.unsw/" />
-        <Button
-          label="LinkedIn"
-          link="https://au.linkedin.com/school/enactus-unsw/"
-        />
-        <Button label="Newsletter" link="http://eepurl.com/gi4Ud9" />
-        <Button label="Website" link="https://enactusunsw.org/" />
-      </div>
+      <div style={{ flexGrow: 1, margin: 20 }} />
       <Confetti
         active={complete}
         config={{
